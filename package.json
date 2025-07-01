@@ -1,0 +1,19 @@
+{
+  "name": "github-action-ci-cd-pipeline",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Samjean50/Github-Action-CI-CD-pipeline.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Samjean50/Github-Action-CI-CD-pipeline/issues"
+  },
+  "homepage": "https://github.com/Samjean50/Github-Action-CI-CD-pipeline#readme",
+  "description": ""
+}
