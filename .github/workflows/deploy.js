@@ -21,4 +21,4 @@ uses: actions/checkout@v4
   run: |
    echo "Deploying application..."
   # Add your deployment commands here
-  # For example, scp files or use rsync, or call a deploy script
+  # For example, scp files or use rsync or call a deploy script
