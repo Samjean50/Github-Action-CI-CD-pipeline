@@ -1,4 +1,24 @@
+
+
 # GitHub Actions CI/CD Pipeline
+
+## Yaml syntax for work flows
+- name: Example Workflow
+- on: [push]
+
+## Workflow structure
+- **Workflow File**: Located in `.github/workflows` directory, e.g., `main.yml`.
+- **Jobs**: Define tasks like building, testing, deploying.
+- **Steps**: Individual tasks within a job.
+- **Actions**: Reusable units of code within steps.
+- **Events**: Triggers for the workflow, e.g., `push`, `pull_request`.
+- **Runners**: The server where the job runs, e.g. `ubuntu-latest`.
+
+# Setting up a Build job
+Creating your workflow folders image
+Defining build job and adding build steps image
+Adding test instruction image
+
 
 ## 📁 Setting Up the Project
 
@@ -139,7 +159,63 @@ Your CI/CD pipeline is now complete. You have:
 - Written GitHub Actions workflows for testing and deployment
 
 - Set up a deployable application
-
+  
 - Verified your app is live and accessible 🎉
 
 - You can now deploy using GitHub Actions and serve your Node.js app through services like Render, Heroku, or your own server.
+
+## Additional YAML Concepts in Github actions
+- Using Environment variables
+Env help you pass configuration and settings image
+
+```env:
+  CUSTOM_VAR: value
+  # Define an environment variable 'CUSTOM_VAR' at the workflow level.
+
+jobs:
+  example:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Use environment variable
+      run: echo $CUSTOM_VAR
+      # Access 'CUSTOM_VAR' in a step.
+```
+
+- Working with Secrets image
+```
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Use secret
+      run: |
+        echo "Access Token: ${{" secrets.ACCESS_TOKEN "}}"
+        # Use 'ACCESS_TOKEN' secret defined in the repository settings.
+```
+- Conditional Execution image
+```
+jobs:
+  conditional-job:
+    runs-on: ubuntu-latest
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    # The job runs only for push events to the 'main' branch.
+    steps:
+    - uses: actions/checkout@v2
+```
+
+- Using Outputs and Inputs between steps image
+```
+jobs:
+  example:
+    runs-on: ubuntu-latest
+    steps:
+    - id: step-one
+      run: echo "::set-output name=value::$(echo hello)"
+      # Set an output named 'value' in 'step-one'.
+    - id: step-two
+      run: |
+        echo "Received value from previous step: ${{" steps.step-one.outputs.value "}}"
+        # Access the output of 'step-one' in 'step-two'.
+```
+
+
