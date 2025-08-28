@@ -29,11 +29,15 @@ matrix:
   # This snippet caches the installed node modules based on the hash of the 'package-lock.json' file.
   # It helps in speeding up the installation process by reusing the cached modules when the 'package-lock.json' file hasn't changed.
 
-  
+
 
 
     - name: Install dependencies
       run: npm install
+    
+      - name: Run Linter
+      run: npx eslint .
+      # 'npx eslint .' runs the ESLint tool on all the files in your repository.
 
     - name: Run tests
       run: npm test
