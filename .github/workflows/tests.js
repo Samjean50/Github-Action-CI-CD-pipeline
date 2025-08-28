@@ -18,6 +18,20 @@ matrix:
     steps:
     - uses: actions/checkout@v2
 
+
+    - name: Cache Node Modules
+  uses: actions/cache@v2
+  with:
+      path: ~/.npm
+      key: ${{" runner.os "}}-node-${{" hashFiles('**/package-lock.json') "}}
+      restore-keys: |
+      ${{" runner.os "}}-node-
+  # This snippet caches the installed node modules based on the hash of the 'package-lock.json' file.
+  # It helps in speeding up the installation process by reusing the cached modules when the 'package-lock.json' file hasn't changed.
+
+  
+
+
     - name: Install dependencies
       run: npm install
 
